@@ -13,13 +13,17 @@ pipeline {
       steps {
         checkout scm
       }
-    }
-    stage('terraform12') {
-      steps {
-        sh './terraform init'
-        #sh './terraform apply -auto-approve'
-      }
-    }
+    }         
+    stage('Terraform init') {
+            steps {
+               sh 'terraform init' 
+            }
+        }
+    stage('Terraform apply') {
+        steps {
+            sh 'terraform apply --auto-approve'
+        }
+    }   
   }
   post {
     always {
